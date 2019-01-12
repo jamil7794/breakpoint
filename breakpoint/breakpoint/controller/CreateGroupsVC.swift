@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateGroupsVC: UIViewController {
     @IBOutlet weak var titleTxtField: InsertTextField!
@@ -52,7 +53,20 @@ class CreateGroupsVC: UIViewController {
     }
     
     @IBAction func doneBtnWasPressed(_ sender: Any) {
-        
+        if titleTxtField.text != "" && descriptionTxtField.text != "" {
+            DataService.instance.getIDs(forUsername: chosenUserArray) { (idsArray) in
+                var userIds = idsArray
+                userIds.append((Auth.auth().currentUser?.uid)!)
+                
+                DataService.instance.createGroup(withTitle: self.titleTxtField.text!, andDescription: self.descriptionTxtField.text!, forUserIds: userIds, handler: { (groupCreated) in
+                    if groupCreated {
+                        self.dismiss(animated: true, completion: nil)
+                    }else{
+                        print("Grooups not created")
+                    }
+                })
+            }
+        }
     }
 
     
