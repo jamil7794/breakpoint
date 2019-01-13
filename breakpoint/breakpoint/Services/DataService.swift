@@ -79,6 +79,7 @@ class DataService {
         if(groupKey != nil){
             REF_GROUPS.child(groupKey!).child("message").childByAutoId().updateChildValues(["content" : message, "senderId":uid])
             // groupkey -> create message -> updateChildByAutodId -> content and message
+            sendComplete(true)
         }else{
             REF_FEED.childByAutoId().updateChildValues(["content": message, "senderId": uid])
             

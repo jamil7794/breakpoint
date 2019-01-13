@@ -56,6 +56,7 @@ extension GroupsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let groupFeedVC = storyboard?.instantiateViewController(withIdentifier: "GroupFeedVC") as? GroupFeedVC else {return}
         groupFeedVC.initData(froGroup: groupsArray[indexPath.row])
-        present(groupFeedVC, animated: true, completion: nil)
+        presentDetail(viewControllerToPresent: groupFeedVC)
+        //present(groupFeedVC, animated: true, completion: nil)
     }
 }

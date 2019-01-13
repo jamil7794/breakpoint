@@ -32,6 +32,7 @@
 		A6BF157721EA2CE9005EE7D6 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BF157621EA2CE9005EE7D6 /* Group.swift */; };
 		A6BF157921EA5768005EE7D6 /* GroupFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BF157821EA5768005EE7D6 /* GroupFeedCell.swift */; };
 		A6BF157B21EA585D005EE7D6 /* GroupFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BF157A21EA585D005EE7D6 /* GroupFeedVC.swift */; };
+		A6BF157D21EB7774005EE7D6 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BF157C21EB7774005EE7D6 /* UIViewControllerExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		A6BF157621EA2CE9005EE7D6 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		A6BF157821EA5768005EE7D6 /* GroupFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedCell.swift; sourceTree = "<group>"; };
 		A6BF157A21EA585D005EE7D6 /* GroupFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedVC.swift; sourceTree = "<group>"; };
+		A6BF157C21EB7774005EE7D6 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		BEA23C4CB158565D45A0BBCB /* Pods-breakpoint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breakpoint.release.xcconfig"; path = "Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint.release.xcconfig"; sourceTree = "<group>"; };
 		D2BAF69BA1564B6B638F7BAB /* Pods-breakpoint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breakpoint.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				A6BF156A21E081DF005EE7D6 /* UIViewExt.swift */,
+				A6BF157C21EB7774005EE7D6 /* UIViewControllerExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				A6BF157321E525F9005EE7D6 /* GroupsVC.swift in Sources */,
 				A6BF157521EA08C0005EE7D6 /* GroupCell.swift in Sources */,
 				A6BF155F21DA5DA1005EE7D6 /* InsertTextField.swift in Sources */,
+				A6BF157D21EB7774005EE7D6 /* UIViewControllerExt.swift in Sources */,
 				A6BF155B21DA5D03005EE7D6 /* AuthVC.swift in Sources */,
 				A6BF157B21EA585D005EE7D6 /* GroupFeedVC.swift in Sources */,
 				A6BF157921EA5768005EE7D6 /* GroupFeedCell.swift in Sources */,

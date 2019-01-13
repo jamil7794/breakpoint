@@ -712,7 +712,7 @@
                                 <rect key="frame" x="0.0" y="102.5" width="375" height="504.5"/>
                                 <color key="backgroundColor" red="0.211891770362854" green="0.2227039635181427" blue="0.26651787757873535" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="119" id="hdE-oa-AhO" customClass="GroupFeedCell" customModule="breakpoint" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupFeedVC" rowHeight="119" id="hdE-oa-AhO" customClass="GroupFeedCell" customModule="breakpoint" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdE-oa-AhO" id="qY4-iG-TEX">
@@ -760,9 +760,7 @@
                                         <connections>
                                             <outlet property="contentLbl" destination="aht-yP-dUP" id="HzR-Ax-aZi"/>
                                             <outlet property="emailLbl" destination="K1w-m1-iAq" id="DW5-7L-YQm"/>
-                                            <outlet property="emailLml" destination="K1w-m1-iAq" id="0HP-DN-Qrl"/>
                                             <outlet property="profileImage" destination="KnD-dj-JFe" id="5nR-Gz-nqQ"/>
-                                            <outlet property="profileImg" destination="KnD-dj-JFe" id="JCZ-bh-uuv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
