@@ -13,6 +13,7 @@ class FeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var messageArray = [Message]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -25,6 +26,7 @@ class FeedVC: UIViewController {
         
         DataService.instance.getAllFeedMessages { (returnMessageArray) in
             self.messageArray = returnMessageArray.reversed()
+  
             self.tableView.reloadData()
         }
     }
