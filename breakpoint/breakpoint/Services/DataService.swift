@@ -12,6 +12,7 @@ import Firebase
 
 let DB_BASE = Database.database().reference()// Database base url
 
+
 class DataService {
     
     static let instance = DataService() // Make it accesssible in any other classes.
@@ -20,6 +21,12 @@ class DataService {
     private var _REF_USER = DB_BASE.child("users")
     private var _REF_GROUPS = DB_BASE.child("groups")
     private var _REF_FEED = DB_BASE.child("feed")
+    
+    var STORAGE : StorageReference {
+       return Storage.storage().reference().child("images") // by default the Firebase should have one bucket, To have more, I need to updgrade it to premium
+    }
+    
+   // var profilePicture = "profilePicture\(Auth.auth().currentUser!.uid).jpg"
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -40,6 +47,7 @@ class DataService {
     func createDBUser(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
     }
+    
     
     func getAllFeedMessages(handler: @escaping (_ messages: [Message]) -> ()){
         var messageArray = [Message]()
@@ -73,7 +81,50 @@ class DataService {
             }
         }
     }
-        
+    
+    func uploadProfilePicture(filename: String, image: UIImage?, handler: @escaping(_ success: Bool) -> ()){
+        if image != nil {
+            guard let imageData = image!.jpegData(compressionQuality: 1) else {return}
+            let uploadImgReference = STORAGE.child(filename)
+            
+            let uploadTask = uploadImgReference.putData(imageData)
+            uploadTask.observe(.progress) { (snapShot) in
+                
+                print("Uploading")
+                print(snapShot.progress ?? "Done")
+            }
+            uploadTask.resume()
+            uploadTask.pause()
+            handler(true)
+        }
+    }
+    
+    func downloadProfilePicture(handler: @escaping(_ image: UIImage, _ success: Bool) -> ()){
+        var image = UIImage()
+        let profilePicture = "profilePicture\(Auth.auth().currentUser!.uid).jpg"
+            let downloadImgReference = STORAGE.child(profilePicture)
+            print(downloadImgReference)
+            let downloadTask = downloadImgReference.getData(maxSize: 1024 * 1024 * 12) {(data, error) in
+                if let imgdata = data {
+                    image = UIImage(data: imgdata)!
+                    handler(image,true)
+                }else{
+                    print("No Data")
+                }
+                print("No Error")
+            }
+
+            downloadTask.observe(.progress) { (snapShot) in
+                print("Downloading")
+                print(snapShot.progress ?? "Done")
+            }
+
+            downloadTask.resume()
+            downloadTask.pause()
+            handler(image, false)
+    }
+
+    
     func uploadPosts(withMessage message: String, forUID uid: String, withGroupKey groupKey: String?, sendComplete: @escaping (_ status: Bool) -> ()){
         
         if(groupKey != nil){

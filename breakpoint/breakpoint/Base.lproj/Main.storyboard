@@ -303,14 +303,29 @@
                                         <color key="textColor" red="0.16078431369999999" green="0.16862745100000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeF-cJ-ygS">
+                                        <rect key="frame" x="134" y="178" width="106" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Change Picture"/>
+                                        <connections>
+                                            <action selector="changePictureWasPressed:" destination="vWD-XW-7aj" eventType="touchUpInside" id="HTa-8n-pgp"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tBT-Iv-nqE">
+                                        <rect key="frame" x="169" y="62" width="37" height="37"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="275" id="0SI-K3-tCy"/>
+                                    <constraint firstAttribute="trailing" secondItem="tBT-Iv-nqE" secondAttribute="trailing" constant="169" id="3jA-45-Ir7"/>
+                                    <constraint firstItem="4ra-ii-j6b" firstAttribute="top" secondItem="tBT-Iv-nqE" secondAttribute="bottom" constant="51" id="6mI-Xv-lUh"/>
+                                    <constraint firstItem="tBT-Iv-nqE" firstAttribute="leading" secondItem="8Ph-ob-crA" secondAttribute="leading" constant="169" id="GwM-jG-Mkp"/>
                                     <constraint firstItem="4ra-ii-j6b" firstAttribute="leading" secondItem="8Ph-ob-crA" secondAttribute="leading" constant="65" id="NLW-2q-0BI"/>
                                     <constraint firstItem="4ra-ii-j6b" firstAttribute="top" secondItem="SrF-dC-0je" secondAttribute="bottom" constant="20" id="eOa-cv-3a6"/>
                                     <constraint firstItem="SrF-dC-0je" firstAttribute="centerX" secondItem="8Ph-ob-crA" secondAttribute="centerX" id="gbk-v5-Q27"/>
                                     <constraint firstAttribute="trailing" secondItem="4ra-ii-j6b" secondAttribute="trailing" constant="65" id="jIO-W4-xpe"/>
+                                    <constraint firstItem="tBT-Iv-nqE" firstAttribute="top" secondItem="8Ph-ob-crA" secondAttribute="top" constant="62" id="qHZ-PU-tSc"/>
                                     <constraint firstItem="SrF-dC-0je" firstAttribute="top" secondItem="8Ph-ob-crA" secondAttribute="top" constant="30" id="tPV-ev-NrT"/>
                                 </constraints>
                             </view>
@@ -346,8 +361,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="me-tabIcon" selectedImage="me-tabIcon" id="hmf-bI-0dn" customClass="m"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="tBT-Iv-nqE" id="R35-LX-Cui"/>
                         <outlet property="emailLbl" destination="4ra-ii-j6b" id="jVy-R6-aix"/>
-                        <outlet property="profileImage" destination="SrF-dC-0je" id="jkc-1M-OZP"/>
+                        <outlet property="profileImage" destination="SrF-dC-0je" id="Ime-SA-Osc"/>
                         <outlet property="tableView" destination="7WH-fE-cmO" id="2RV-JG-w3K"/>
                     </connections>
                 </viewController>
