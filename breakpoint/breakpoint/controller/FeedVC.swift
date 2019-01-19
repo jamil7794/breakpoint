@@ -53,7 +53,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as? FeedCell else {return UITableViewCell()}
         
-        var image = UIImage(named: "defaultProfileImage")
+        let image = UIImage(named: "defaultProfileImage")
         let message = messageArray[indexPath.row]
     
         

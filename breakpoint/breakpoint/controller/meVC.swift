@@ -14,32 +14,41 @@ class meVC: UIViewController,UINavigationControllerDelegate, UIImagePickerContro
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emailLbl: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    
     var image : UIImage?
     var loaded = false
-   
+    var myFeeds = [String]()
     @IBOutlet weak var profileImage: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         activityIndicator.startAnimating()
         self.profileImage.layer.cornerRadius = self.profileImage.bounds.height/2
         self.profileImage.image = image
+
         DataService.instance.downloadProfilePicture { (profileImage, success) in
             if success {
                 if (self.profileImage!.image != nil) {
                     self.profileImage.image = profileImage
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
                 }
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
+
             }else{
                 self.profileImage.image = UIImage(named: "defaultProfileImage")
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
+//                self.activityIndicator.stopAnimating()
+//                self.activityIndicator.isHidden = true
             }
         }
         
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +81,16 @@ class meVC: UIViewController,UINavigationControllerDelegate, UIImagePickerContro
                     self.profileImage.image = UIImage(named: "defaultProfileImage")
                 }
             }
+        }
+        DataService.instance.getAllMessagesForUID(uid: (Auth.auth().currentUser?.uid)!) { (messages) in
+            
+            self.myFeeds = messages
+            self.tableView.reloadData()
+        }
+        
+        DataService.instance.getAllMessagesForUIDinGroups(uid: (Auth.auth().currentUser?.uid)!) { (message) in
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -126,21 +145,22 @@ class meVC: UIViewController,UINavigationControllerDelegate, UIImagePickerContro
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let im = UIImageView()
+            var im = UIImage()
             
-            im.image = image
+            im = image
             let filename = "profilePicture\(Auth.auth().currentUser!.uid).jpg"
             //profileImage.image = im.image
-            DataService.instance.uploadProfilePicture(filename: filename, image: im.image) { (success) in
+            DataService.instance.uploadProfilePicture(filename: filename, image: im) { (success) in
                 if success {
-                    self.image = im.image!
+                    self.image = im
+                    self.profileImage.image = im
                     print("Uploaded")
-                    
+                    self.loaded = true
                 }
             }
-            self.loaded = true
             
-            //self.profileImage.image = im.image
+            
+            self.profileImage.image = im
             
         }else{
             print("there was an error")
@@ -152,4 +172,27 @@ class meVC: UIViewController,UINavigationControllerDelegate, UIImagePickerContro
     }
     
     
+}
+
+extension meVC: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myFeeds.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "myFeedCell") as? myFeedCell else {return UITableViewCell()}
+        
+        let mess = myFeeds[indexPath.row]
+        
+        cell.configureCell(feed: mess)
+        return cell
+        
+    }
+
+
 }

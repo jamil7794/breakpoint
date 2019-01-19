@@ -329,30 +329,47 @@
                                     <constraint firstItem="SrF-dC-0je" firstAttribute="top" secondItem="8Ph-ob-crA" secondAttribute="top" constant="30" id="tPV-ev-NrT"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-fE-cmO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CwG-PN-WEL">
                                 <rect key="frame" x="0.0" y="345" width="375" height="273"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="49" id="OnD-fc-pde">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="49"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myFeedCell" id="fYs-ai-88D" customClass="myFeedCell" customModule="breakpoint" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OnD-fc-pde" id="PuZ-AF-SFg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fYs-ai-88D" id="CPd-nt-DN3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biu-4c-8jr">
+                                                    <rect key="frame" x="15" y="11" width="345" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="biu-4c-8jr" firstAttribute="leading" secondItem="CPd-nt-DN3" secondAttribute="leadingMargin" id="GO5-EG-MzZ"/>
+                                                <constraint firstItem="biu-4c-8jr" firstAttribute="top" secondItem="CPd-nt-DN3" secondAttribute="topMargin" id="V8k-kM-3M1"/>
+                                                <constraint firstItem="biu-4c-8jr" firstAttribute="trailing" secondItem="CPd-nt-DN3" secondAttribute="trailingMargin" id="pzh-s3-Gck"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="biu-4c-8jr" secondAttribute="bottom" constant="1" id="w3a-VK-0xC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="myFeeds" destination="biu-4c-8jr" id="7wl-yv-YYh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="7WH-fE-cmO" firstAttribute="leading" secondItem="Pob-gg-EKy" secondAttribute="leading" id="8D5-5G-Byc"/>
+                            <constraint firstItem="CwG-PN-WEL" firstAttribute="top" secondItem="8Ph-ob-crA" secondAttribute="bottom" id="1Tz-Oo-CHX"/>
+                            <constraint firstItem="Pob-gg-EKy" firstAttribute="bottom" secondItem="CwG-PN-WEL" secondAttribute="bottom" id="HEx-R5-TXi"/>
                             <constraint firstItem="wJP-aV-KwD" firstAttribute="trailing" secondItem="Pob-gg-EKy" secondAttribute="trailing" id="ODn-ba-3NA"/>
+                            <constraint firstItem="CwG-PN-WEL" firstAttribute="leading" secondItem="Pob-gg-EKy" secondAttribute="leading" id="RI5-yQ-gxa"/>
                             <constraint firstItem="8Ph-ob-crA" firstAttribute="leading" secondItem="Pob-gg-EKy" secondAttribute="leading" id="d8d-HR-hoU"/>
-                            <constraint firstItem="7WH-fE-cmO" firstAttribute="bottom" secondItem="Pob-gg-EKy" secondAttribute="bottom" id="h5U-oI-JIm"/>
-                            <constraint firstItem="7WH-fE-cmO" firstAttribute="top" secondItem="8Ph-ob-crA" secondAttribute="bottom" id="nfD-Tk-B4m"/>
                             <constraint firstItem="wJP-aV-KwD" firstAttribute="top" secondItem="Stc-Kh-0mM" secondAttribute="top" id="pP4-R4-x8k"/>
-                            <constraint firstItem="7WH-fE-cmO" firstAttribute="trailing" secondItem="Pob-gg-EKy" secondAttribute="trailing" id="xBc-vK-hkJ"/>
+                            <constraint firstItem="Pob-gg-EKy" firstAttribute="trailing" secondItem="CwG-PN-WEL" secondAttribute="trailing" id="sVC-5Q-vLk"/>
                             <constraint firstItem="8Ph-ob-crA" firstAttribute="top" secondItem="wJP-aV-KwD" secondAttribute="bottom" id="yAB-aA-O7w"/>
                             <constraint firstItem="8Ph-ob-crA" firstAttribute="trailing" secondItem="Pob-gg-EKy" secondAttribute="trailing" id="zgB-MS-cZ0"/>
                             <constraint firstItem="wJP-aV-KwD" firstAttribute="leading" secondItem="Pob-gg-EKy" secondAttribute="leading" id="zj9-kz-5Js"/>
@@ -364,12 +381,12 @@
                         <outlet property="activityIndicator" destination="tBT-Iv-nqE" id="R35-LX-Cui"/>
                         <outlet property="emailLbl" destination="4ra-ii-j6b" id="jVy-R6-aix"/>
                         <outlet property="profileImage" destination="SrF-dC-0je" id="Ime-SA-Osc"/>
-                        <outlet property="tableView" destination="7WH-fE-cmO" id="2RV-JG-w3K"/>
+                        <outlet property="tableView" destination="CwG-PN-WEL" id="4f1-fc-DNe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4n-eO-sxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="0.0"/>
+            <point key="canvasLocation" x="1596" y="-0.44977511244377816"/>
         </scene>
         <!--Groups-->
         <scene sceneID="wg7-f3-ORb">

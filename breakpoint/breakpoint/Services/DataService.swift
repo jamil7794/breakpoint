@@ -21,6 +21,7 @@ class DataService {
     private var _REF_USER = DB_BASE.child("users")
     private var _REF_GROUPS = DB_BASE.child("groups")
     private var _REF_FEED = DB_BASE.child("feed")
+
     
     var STORAGE : StorageReference {
        return Storage.storage().reference().child("images") // by default the Firebase should have one bucket, To have more, I need to updgrade it to premium
@@ -156,6 +157,52 @@ class DataService {
         }
     }
     
+    func getAllMessagesForUIDinGroups(uid: String, handler: @escaping (_ messages: [String]) -> ()){
+        var messagess = [String]()
+        
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapShot) in
+            guard let groupSnapShot = groupSnapShot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapShot{
+                self.REF_GROUPS.child(group.key).observeSingleEvent(of: .value, with: { (groupDetails) in
+                    self.REF_GROUPS.child(group.key).child("message").observeSingleEvent(of: .value, with:
+                        { (dataSnapshots) in
+                        
+                        guard let snapShots = dataSnapshots.children.allObjects as? [DataSnapshot] else {return}
+                        for message in snapShots {
+                            let senderId = message.childSnapshot(forPath: "senderId").value as! String
+                            if senderId == Auth.auth().currentUser?.uid {
+                                let content = message.childSnapshot(forPath: "content").value as! String
+                                messagess.append(content)
+                            }
+                            
+                        }
+                        handler(messagess)
+                    })
+                })
+            }
+        }
+    }
+    
+    func getAllMessagesForUID(uid: String, handler: @escaping (_ messagesArray: [String]) -> ()){
+        var messages = [String]()
+        REF_FEED.observeSingleEvent(of: .value) { (userSnapshot) in
+            guard let dataSnapshots = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            
+            for user in dataSnapshots{
+                let UID = user.childSnapshot(forPath: "senderId").value as! String
+                if UID == uid {
+                    let message = user.childSnapshot(forPath: "content").value as! String
+                    messages.append(message)
+                    
+                }
+                
+            }
+            
+        handler(messages)
+        }
+       
+    }
+    
     
     
     func getEmail(forSearchQuery query: String, handler: @escaping (_ emailArray: [String]) -> ()){
@@ -215,6 +262,7 @@ class DataService {
             guard let groupSnapShot = groupSnapShot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapShot{
                 let memberArray = group.childSnapshot(forPath: "members").value as! [String]
+                //print(memberArray)
                 if memberArray.contains((Auth.auth().currentUser?.uid)!){
                     //if this contatins me, then go ahead and do something. Get all the groups where it has me on it
                     let title = group.childSnapshot(forPath: "title").value as! String
